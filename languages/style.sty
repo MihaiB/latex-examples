@@ -1,0 +1,13 @@
+\ProvidesPackage{style}
+
+% Without ‘geometry’ or ‘hyperref’ the documentclass paper size (e.g. a5paper)
+% changes the area covered with text but not the size of the paper.
+\RequirePackage{hyperref}
+\RequirePackage[autostyle,strict]{csquotes}
+\RequirePackage{polyglossia}
+
+\setdefaultlanguage{english}
+\setotherlanguages{french,german,greek,russian}
+
+\newfontfamily\greekfont[Script=Greek]{CMU Serif}
+\newfontfamily\russianfont[Script=Cyrillic]{CMU Serif}

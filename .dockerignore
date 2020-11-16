@@ -1,4 +1,9 @@
+**/*.aux
+**/*.log
+**/*.out
+**/*.pdf
 .dockerignore
 .git
 .github
+.gitignore
 Dockerfile
