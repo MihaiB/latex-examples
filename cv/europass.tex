@@ -1,0 +1,30 @@
+\documentclass[a4paper,english]{europasscv}
+
+\newcommand{\xCvEuropass}{}
+% Avoid possible ‘Error: Option clash for package hyperref.’
+\newcommand{\xNoHyperref}{}
+% europasscv fonts don't work if we load polyglossia
+\newcommand{\xNoPolyglossia}{}
+\newcommand{\xItemize}{ecvitemize}
+\newcommand{\xHrefColor}{ecvlanglinkcolor}
+\newcommand{\cvPersonalInfo}{
+	\ecvpersonalinfo
+	\ecvbigitem[-4ex]{\xSummaryLabel}{\xSummary}
+}
+\newcommand{\cvSection}[1]{\ecvsection{#1}}
+\newcommand{\cvEntry}[5]{
+	\ecvtitle{#1}{#2}
+	\ecvitem{}{\textcolor{ecvsectioncolor}{#3\hfill#4}\par#5}
+}
+\newcommand{\cvSubsection}[2]{\ecvblueitem{#1}{#2}}
+\usepackage{style}
+
+\ecvname{\xFirstName{} \xLastName}
+\ecvaddress{\xAddressCity, \xAddressCountry}
+\ecvemail{\xEmail}
+
+\begin{document}
+\begin{europasscv}
+	\cvBody
+\end{europasscv}
+\end{document}

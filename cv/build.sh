@@ -8,6 +8,19 @@ SCRIPT_DIR=`dirname "$SCRIPT"`
 cd "$SCRIPT_DIR"
 unset SCRIPT SCRIPT_DIR
 
-cv/build.sh
-languages/build.sh
-letter/build.sh
+for FILE_BASE in \
+	europass \
+	modern \
+	plain \
+	; do
+	for I in {1..2}; do
+		lualatex "$FILE_BASE".tex
+	done
+	unset I
+
+	rm \
+		"$FILE_BASE".aux \
+		"$FILE_BASE".log \
+		"$FILE_BASE".out \
+		#
+done

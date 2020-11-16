@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=*}
+\usepackage{ragged2e}
+\usepackage{tabu}
+\usepackage{geometry}
+\newcommand{\xCvPlain}{}
+\newcommand{\cvPersonalInfo}{
+	\begin{center}
+		\textbf{\large\xFirstName{} \xLastName{}}\\
+		\xAddressCity, \xAddressCountry{}\\
+		\xHref{mailto:\xEmail}{\xEmail}\\
+	\end{center}
+
+	\begin{center}
+		\xSummary
+	\end{center}
+}
+\newcommand{\cvSection}[1]{
+	\subsection*{\centering#1}
+	\booltrue{xFirstSectionEntry}
+}
+\newcommand{\cvEntry}[5]{
+	\ifbool{xFirstSectionEntry}
+	{\boolfalse{xFirstSectionEntry}}
+	% \medskip, \bigskip or \vspace{0.75\baselineskip}
+	{\medskip}
+
+	\begin{tabu}to \linewidth{@{}X@{}}
+		\textbf{#2}\hfill\textbf{#3}\newline
+		\textbf{#1}\hfill\textbf{#4}\newline
+		#5\\
+	\end{tabu}
+}
+\newcommand{\cvSubsection}[2]{\subsubsection*{#1}#2}
+\usepackage{style}
+\setlength{\parindent}{0pt}
+% purple, violet
+\hypersetup{colorlinks,urlcolor=violet}
+\setmainfont{CMU Serif}
+\newbool{xFirstSectionEntry}
+
+\begin{document}
+\cvBody
+\end{document}

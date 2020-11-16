@@ -1,0 +1,46 @@
+\documentclass[a4paper]{moderncv}
+
+\usepackage{xpatch}
+\usepackage{geometry}
+\newcommand{\xCvModern}{}
+% Avoid ‘Error: Option clash for package hyperref.’
+\newcommand{\xNoHyperref}{}
+% moderncv fonts don't work if we load polyglossia
+\newcommand{\xNoPolyglossia}{}
+% banking, classsic
+\moderncvstyle{banking}
+% black, burgundy, green, purple, red
+\moderncvcolor{purple}
+%\setmainfont{TeX Gyre Pagella}
+
+% workaround: put the long title on a separate line for moderncvstyle banking
+\makeatletter
+\@ifpackageloaded{moderncvstylebanking}{
+	\xpatchcmd{\makehead}
+	{\titlestyle{~|~\@title}}
+	{\par\titlestyle{\@title}}
+	{}{\errmessage{Cannot patch moderncv title}}
+}{}
+\makeatother
+
+\newcommand{\xHrefColor}{color1}
+\newcommand{\cvPersonalInfo}{\makecvtitle}
+\newcommand{\cvSection}[1]{\section{#1}}
+\newcommand{\cvEntry}[5]{\cventry{#1}{#2}{#3}{#4}{}{#5}}
+% FYI \subsection causes:
+% LaTeX Font Warning: Font shape … undefined using … instead
+\newcommand{\cvSubsection}[2]{\subsection{#1}\cvitem{}{#2}}
+\usepackage{style}
+
+\name{\xFirstName}{\xLastName}
+% put this in the pdftitle (created by moderncv \AtEndPreamble)
+\title{\xRole}
+\address{\xAddressCity}{\xAddressCountry}
+\email{\xEmail}
+\quote{\xSummary}
+
+\begin{document}
+% don't show the space-consuming \title on the page, we show the \quote
+\title{}
+\cvBody
+\end{document}

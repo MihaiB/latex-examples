@@ -1,0 +1,137 @@
+% A beginner's strongly-coupled solution.
+
+% The importing package must define:
+% \cvPersonalInfo
+% \cvSection
+% \cvSubsection
+% \cvEntry
+
+% The importing package may also define:
+% \xCvEuropass
+% \xCvModern
+% \xCvPlain
+% \xHrefColor
+% \xItemize
+% \xNoHyperref
+% \xNoPolyglossia
+
+% Define:
+% The items of personal information
+% \xHref
+% \cvBody
+
+\ProvidesPackage{style}
+
+\RequirePackage{etoolbox}
+\RequirePackage{xcolor}
+\ifdef{\xNoHyperref}{}{\RequirePackage{hyperref}}
+\ifdef{\xNoPolyglossia}{
+	% csquotes will use ‘style=american’ by default
+	\RequirePackage[strict]{csquotes}
+}{
+	\RequirePackage[autostyle,strict]{csquotes}
+	\RequirePackage{polyglossia}
+
+	\setdefaultlanguage{english}
+}
+\newcommand{\xHref}[2]{%
+	\href{#1}{\ifdef{\xHrefColor}{\color\xHrefColor}{}#2}}
+\providecommand{\xItemize}{itemize}
+
+\newcommand{\xFirstName}{Prénom}
+\newcommand{\xLastName}{Nachname}
+\newcommand{\xRoleLabel}{Position}
+\newcommand{\xRole}{Target Desired Role}
+\newcommand{\xSummaryLabel}{}
+\newcommand{\xSummary}{A description of skills and interests.
+This example contains additional text
+in order to show how things look in that situation.}
+\newcommand{\xAddressCity}{Newcity upon~River}
+\newcommand{\xAddressCountry}{Divided~Placedom}
+\newcommand{\xEmail}{PrenomNachname@mail.example.org}
+
+\newcommand{\@xWyWhen}{Oct~2018 -- present}
+\newcommand{\@xWyRole}{The Role}
+\newcommand{\@xWyOrg}{The Organization}
+\newcommand{\@xWyAddress}{Newcity upon~River, Divided~Placedom}
+\newcommand{\@xWyDescr}{This text tests the layout when long lines wrap
+and shows specific features:
+\enquote{quoted text}, \emph{emphasis},
+hyperlinks (\xHref{https://example.org}{example.org}),
+centered \textperiodcentered{} period.\newline
+A new line.
+
+A new paragraph.}
+
+\newcommand{\@xWzWhen}{May~2015 -- Sep~2018}
+\newcommand{\@xWzRole}{Hatter, Clothesmaker and Artisan}
+\newcommand{\@xWzOrg}{Madly Hatted Sanely Dressed, Inc.}
+\newcommand{\@xWzAddress}{Anytown, Divided~Queendom}
+\newcommand{\@xWzDescr}{Find the spacing (e.g., around lists)
+which works well for all templates.
+This long text, wrapped on multiple lines, is followed by:
+
+\begin{\xItemize}
+	\item A list with several items.
+	\item This item has more text and will wrap over multiple lines,
+		but it should still appear as a single item
+		part of the continuing list.
+	\item And a short item.
+\end{\xItemize}
+
+after which there is another line.}
+
+\newcommand{\@xEyWhen}{2011 -- 2015}
+\newcommand{\@xEyRole}{Degree of Study in particular topic}
+\newcommand{\@xEyOrg}{Subject \& Domain Field University}
+\newcommand{\@xEyAddress}{Capital, Majestic~Placedom}
+\newcommand{\@xEyDescr}{Studied the subject, topic and its domain field.
+Adding these words will make the text wrap over multiple lines.}
+
+\newcommand{\@xEzWhen}{Aug~2009 -- May~2010}
+\newcommand{\@xEzRole}{Artistic Artist}
+\newcommand{\@xEzOrg}{Artistic School}
+\newcommand{\@xEzAddress}{Anytown, Divided~Queendom}
+\newcommand{\@xEzDescr}{Learned visual expression
+using drawing and painting.}
+
+\newcommand{\@xComputerSkills}{The acquired computer abilities which include:
+
+\begin{\xItemize}
+	\item The first list item.
+	\item A second technical item \& its additional text.
+	\item \LaTeX{}.
+\end{\xItemize}}
+
+\newcommand{\@xCommunicationSkills}{Description of communication skills
+with examples. This line is long enough
+to wrap around and illustrate the layout for that case.
+
+This is a second paragraph with text (in parentheses)
+which amounts to a moderate quantity for display.}
+
+\newcommand{\@xOtherSkills}{\begin{\xItemize}
+	\item A first item in this list.
+	\item The second item.
+	\item The third and last list item, which has only
+		a moderate length.
+\end{\xItemize}
+
+This final sentence follows the list and concludes the subsection.}
+
+\newcommand{\cvBody}{
+	\cvPersonalInfo{}
+
+	\cvSection{Work Experience}
+	\cvEntry{\@xWyWhen}{\@xWyRole}{\@xWyOrg}{\@xWyAddress}{\@xWyDescr}
+	\cvEntry{\@xWzWhen}{\@xWzRole}{\@xWzOrg}{\@xWzAddress}{\@xWzDescr}
+
+	\cvSection{Education and Training}
+	\cvEntry{\@xEyWhen}{\@xEyRole}{\@xEyOrg}{\@xEyAddress}{\@xEyDescr}
+	\cvEntry{\@xEzWhen}{\@xEzRole}{\@xEzOrg}{\@xEzAddress}{\@xEzDescr}
+
+	\cvSection{Personal Skills}
+	\cvSubsection{Computer skills}{\@xComputerSkills}
+	\cvSubsection{Communication skills}{\@xCommunicationSkills}
+	\cvSubsection{Other skills}{\@xOtherSkills}
+}
