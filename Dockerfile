@@ -4,4 +4,4 @@ USER user:user
 RUN ["mkdir", "/home/user/latex-examples"]
 WORKDIR /home/user/latex-examples
 COPY --chown=user:user [".", "."]
-RUN ["./docker.sh"]
+RUN ["./build.sh"]
